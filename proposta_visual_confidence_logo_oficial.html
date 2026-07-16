@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confidence Construtora — Propostas Visuais</title>
+<style>
+:root {
+  --blue:#105584;
+  --blue-dark:#082d4c;
+  --blue-soft:#7097b0;
+  --paper:#f4f7f9;
+  --line:#cad9e3;
+  --ink:#12283b;
+  --muted:#607587;
+  --gold:#c6973d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,"Open Sans","Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+}
+img{display:block;max-width:100%}
+button{font:inherit}
+.top{
+  position:sticky;top:0;z-index:10;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.top-inner{
+  width:min(1320px,calc(100% - 36px));height:74px;margin:auto;
+  display:flex;align-items:center;gap:28px;
+}
+.top-logo{width:190px;height:auto;margin-right:auto}
+nav{display:flex;gap:22px;font-size:13px;font-weight:800}
+nav a{color:var(--blue);text-decoration:none}
+.print{border:1px solid var(--blue);color:var(--blue);background:white;border-radius:8px;padding:9px 13px;cursor:pointer}
+.hero{
+  min-height:680px;color:white;
+  background:
+    linear-gradient(90deg,rgba(4,29,52,.97),rgba(10,65,104,.84)),
+    radial-gradient(circle at 80% 20%,#1682b9,transparent 30%),
+    #082d4c;
+  display:grid;align-items:end;position:relative;overflow:hidden;
+}
+.hero:after{
+  content:"";position:absolute;right:-120px;top:-190px;
+  width:720px;height:720px;border:1px solid rgba(255,255,255,.16);
+  border-radius:50%;box-shadow:-110px 100px 0 -1px rgba(255,255,255,.06);
+}
+.hero-inner{
+  width:min(1320px,calc(100% - 40px));margin:auto;
+  padding:120px 0 88px;position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 360px;gap:80px;align-items:end;
+}
+.hero-logo{width:310px;margin-bottom:45px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:#4da5d5}
+h1{font-size:clamp(52px,7vw,96px);line-height:.96;letter-spacing:-.055em;margin:10px 0 25px;max-width:880px}
+.hero p{font-size:21px;color:#d7e6ef;max-width:720px;margin:0}
+.hero-note{
+  border:1px solid rgba(255,255,255,.25);border-radius:15px;padding:28px;
+  background:rgba(4,25,46,.45);backdrop-filter:blur(12px);
+}
+.hero-note strong{display:block;font-size:28px;line-height:1.08;margin-bottom:12px}
+.hero-note span{color:#c9dce8}
+.intro{
+  width:min(1120px,calc(100% - 40px));margin:auto;padding:95px 0 60px;
+  display:grid;grid-template-columns:.7fr 1fr;gap:70px;align-items:end;
+}
+.intro h2,.proposal h2{color:var(--blue-dark);font-size:clamp(39px,5vw,67px);line-height:1;letter-spacing:-.045em;margin:8px 0 0}
+.intro p,.proposal-head p{font-size:19px;color:var(--muted);margin:0}
+.proposals{width:min(1380px,calc(100% - 26px));margin:auto}
+.proposal{padding:80px 0 120px;border-top:1px solid var(--line)}
+.proposal-head{
+  width:min(1120px,100%);margin:0 auto 40px;
+  display:flex;justify-content:space-between;gap:40px;align-items:end;
+}
+.proposal-head>div{max-width:760px}
+.recommended{
+  background:#fff2d3;color:#6a4d15;border:1px solid #dfbd70;
+  padding:10px 14px;border-radius:999px;font-size:12px;font-weight:900;
+  text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;
+}
+.full-screen{
+  width:min(1120px,100%);margin:auto;padding:0;display:block;position:relative;
+  border:1px solid #b9cbd7;background:white;border-radius:18px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(8,45,76,.13);cursor:zoom-in;
+}
+.full-screen img{width:100%;height:auto}
+.zoom{
+  position:absolute;right:18px;bottom:18px;background:rgba(8,45,76,.88);color:white;
+  padding:9px 13px;border-radius:7px;font-size:12px;font-weight:800;
+}
+.details{
+  width:min(1260px,100%);margin:28px auto 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.detail-card{
+  border:1px solid var(--line);padding:0;background:white;border-radius:13px;
+  overflow:hidden;text-align:left;cursor:zoom-in;
+}
+.detail-card img{width:100%;height:230px;object-fit:cover;object-position:top}
+.detail-card span{display:block;padding:15px 17px;font-weight:800;color:var(--blue-dark)}
+.choice{
+  background:linear-gradient(135deg,#e8f3f9,#fff);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.choice-inner{width:min(1120px,calc(100% - 40px));margin:auto;padding:100px 0}
+.choice h2{font-size:clamp(40px,5vw,68px);line-height:1;letter-spacing:-.045em;color:var(--blue-dark);margin:8px 0 25px}
+.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.choice-card{background:white;border:1px solid var(--line);border-radius:14px;padding:25px}
+.choice-card strong{font-size:22px;color:var(--blue-dark)}
+.choice-card p{color:var(--muted);margin:8px 0 0}
+.mini-map{width:min(1120px,calc(100% - 40px));margin:auto;padding:95px 0}
+.mini-map h2{font-size:44px;color:var(--blue-dark);margin:8px 0 35px;letter-spacing:-.035em}
+.map-row{display:flex;align-items:center;gap:12px;overflow:auto;padding-bottom:10px}
+.node{
+  min-width:145px;padding:20px 15px;text-align:center;border-radius:12px;
+  background:white;border:1px solid var(--line);color:var(--blue-dark);font-weight:900;
+}
+.node.primary{color:white;background:var(--blue)}
+.arrow{color:var(--blue-soft);font-size:28px}
+.map-note{color:var(--muted);margin-top:22px}
+footer{background:var(--blue-dark);color:white;padding:58px 24px}
+.footer-inner{width:min(1120px,100%);margin:auto;display:flex;align-items:center;gap:55px}
+.footer-logo{width:235px}
+footer p{color:#c6d9e5;max-width:680px}
+.modal{
+  display:none;position:fixed;inset:0;z-index:100;background:rgba(2,12,22,.94);
+  overflow:auto;padding:55px 22px;
+}
+.modal.open{display:block}
+.modal img{max-width:min(1250px,100%);margin:auto;border-radius:10px;background:white}
+.close{
+  position:fixed;right:20px;top:17px;width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.5);background:var(--blue-dark);color:white;
+  font-size:25px;cursor:pointer;
+}
+@media(max-width:860px){
+  nav{display:none}
+  .hero-inner,.intro{grid-template-columns:1fr}
+  .hero-inner{gap:45px}
+  .proposal-head{display:block}
+  .recommended{display:inline-block;margin-top:22px}
+  .details,.choice-grid{grid-template-columns:1fr}
+  .detail-card img{height:auto}
+  .footer-inner{display:block}
+  .footer-logo{margin-bottom:25px}
+}
+@media(max-width:540px){
+  .top-logo{width:155px}
+  .print{display:none}
+  .hero-logo{width:240px}
+  h1{font-size:50px}
+  .proposal{padding:60px 0 85px}
+}
+@media print{
+  @page{size:A4 portrait;margin:10mm}
+  .top,.modal,.zoom{display:none!important}
+  .hero{min-height:275mm;break-after:page}
+  .hero-inner{width:100%;padding:40mm 8mm 20mm}
+  .intro{width:100%;padding:12mm 0}
+  .proposal{break-before:page;padding:8mm 0}
+  .proposal-head{width:100%;margin-bottom:6mm}
+  .full-screen{width:100%;box-shadow:none;border-radius:0}
+  .full-screen img{max-height:245mm;width:auto;margin:auto}
+  .details{display:none}
+  .choice,.mini-map,footer{break-before:page}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <img class="top-logo" src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/logo_oficial_aplicacao_azul.png" alt="Confidence Construtora">
+    <nav>
+      <a href="#proposta-1">Proposta A</a>
+      <a href="#proposta-2">Proposta B</a>
+      <a href="#proposta-3">Proposta C</a>
+      <a href="#estrutura">Estrutura</a>
+    </nav>
+    <button class="print" type="button" onclick="window.print()">Imprimir / PDF</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <img class="hero-logo" src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/logo_oficial_aplicacao_clara.png" alt="Confidence Construtora">
+      <div class="eyebrow">Proposta visual do novo website</div>
+      <h1>Três direções de layout aplicadas às obras.</h1>
+      <p>Documento concentrado nas imagens de proposta. A arquitetura do site aparece apenas como suporte à decisão visual.</p>
+    </div>
+    <aside class="hero-note">
+      <strong>Marca oficial aplicada</strong>
+      <span>As marcas inventadas dos mockups foram removidas e substituídas pela aplicação baseada no símbolo oficial utilizado no website atual.</span>
+    </aside>
+  </div>
+</section>
+
+<section class="intro">
+  <div>
+    <div class="eyebrow">Leitura da proposta</div>
+    <h2>Escolher primeiro a experiência visual.</h2>
+  </div>
+  <p>As três alternativas preservam o mesmo conteúdo essencial — obras, estados, registros e contato — mas organizam a apresentação com pesos diferentes. As telas completas vêm primeiro; os detalhes ampliados aparecem logo abaixo.</p>
+</section>
+
+<main class="proposals">
+  
+        <section class="proposal" id="proposta-1">
+          <div class="proposal-head">
+            <div>
+              <div class="eyebrow">Proposta A</div>
+              <h2>Editorial e imersiva</h2>
+              <p>A obra ocupa a abertura e conduz uma narrativa comercial apoiada por fotografias amplas.</p>
+            </div>
+            
+          </div>
+          <button class="full-screen" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial.png" aria-label="Ampliar Editorial e imersiva">
+            <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial.png" alt="Editorial e imersiva">
+            <span class="zoom">Ampliar tela</span>
+          </button>
+          <div class="details">
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial_detalhe_1.jpg" aria-label="Ampliar Abertura de impacto">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial_detalhe_1.jpg" alt="Abertura de impacto">
+          <span>Abertura de impacto</span>
+        </button>
+        
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial_detalhe_2.jpg" aria-label="Ampliar Obras e estados documentados">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial_detalhe_2.jpg" alt="Obras e estados documentados">
+          <span>Obras e estados documentados</span>
+        </button>
+        
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial_detalhe_3.jpg" aria-label="Ampliar Evolução e prova institucional">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_a_editorial_logo_oficial_detalhe_3.jpg" alt="Evolução e prova institucional">
+          <span>Evolução e prova institucional</span>
+        </button>
+        </div>
+        </section>
+        
+        <section class="proposal" id="proposta-2">
+          <div class="proposal-head">
+            <div>
+              <div class="eyebrow">Proposta B</div>
+              <h2>Documental e comercial</h2>
+              <p>A composição equilibra obra em destaque, estados da execução, registros fotográficos e contato.</p>
+            </div>
+            <span class="recommended">Direção recomendada</span>
+          </div>
+          <button class="full-screen" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial.png" aria-label="Ampliar Documental e comercial">
+            <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial.png" alt="Documental e comercial">
+            <span class="zoom">Ampliar tela</span>
+          </button>
+          <div class="details">
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial_detalhe_1.jpg" aria-label="Ampliar Abertura e chamada principal">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial_detalhe_1.jpg" alt="Abertura e chamada principal">
+          <span>Abertura e chamada principal</span>
+        </button>
+        
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial_detalhe_2.jpg" aria-label="Ampliar Portfólio e estado das obras">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial_detalhe_2.jpg" alt="Portfólio e estado das obras">
+          <span>Portfólio e estado das obras</span>
+        </button>
+        
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial_detalhe_3.jpg" aria-label="Ampliar Obra em destaque e conversão">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_b_documental_logo_oficial_detalhe_3.jpg" alt="Obra em destaque e conversão">
+          <span>Obra em destaque e conversão</span>
+        </button>
+        </div>
+        </section>
+        
+        <section class="proposal" id="proposta-3">
+          <div class="proposal-head">
+            <div>
+              <div class="eyebrow">Proposta C</div>
+              <h2>Catálogo e acompanhamento visual</h2>
+              <p>A descoberta das obras usa filtros claros, seguida por comparação visual e metodologia de execução.</p>
+            </div>
+            
+          </div>
+          <button class="full-screen" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial.png" aria-label="Ampliar Catálogo e acompanhamento visual">
+            <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial.png" alt="Catálogo e acompanhamento visual">
+            <span class="zoom">Ampliar tela</span>
+          </button>
+          <div class="details">
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial_detalhe_1.jpg" aria-label="Ampliar Hero e filtros de portfólio">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial_detalhe_1.jpg" alt="Hero e filtros de portfólio">
+          <span>Hero e filtros de portfólio</span>
+        </button>
+        
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial_detalhe_2.jpg" aria-label="Ampliar Galeria e comparação visual">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial_detalhe_2.jpg" alt="Galeria e comparação visual">
+          <span>Galeria e comparação visual</span>
+        </button>
+        
+        <button class="detail-card" type="button" data-full="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial_detalhe_3.jpg" aria-label="Ampliar Metodologia, números e contato">
+          <img src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/proposta_c_catalogo_logo_oficial_detalhe_3.jpg" alt="Metodologia, números e contato">
+          <span>Metodologia, números e contato</span>
+        </button>
+        </div>
+        </section>
+        
+</main>
+
+<section class="choice">
+  <div class="choice-inner">
+    <div class="eyebrow">Comparação das direções</div>
+    <h2>A proposta B oferece o melhor equilíbrio inicial.</h2>
+    <p class="intro-text">Ela não transforma o website em sistema técnico, mas ainda permite documentar etapas, destacar fotografias e conduzir o visitante até o contato comercial.</p>
+    <div class="choice-grid">
+      <article class="choice-card"><strong>A · Impacto</strong><p>Melhor para posicionamento visual, grandes fotografias e percepção de marca.</p></article>
+      <article class="choice-card"><strong>B · Equilíbrio</strong><p>Melhor combinação de portfólio, documentação, institucional e conversão.</p></article>
+      <article class="choice-card"><strong>C · Catálogo</strong><p>Melhor quando houver muitas obras e necessidade maior de busca e filtros.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="mini-map" id="estrutura">
+  <div class="eyebrow">Anexo reduzido</div>
+  <h2>Estrutura mínima de navegação</h2>
+  <div class="map-row" aria-label="Fluxo principal do site">
+    <div class="node primary">Início</div><div class="arrow">→</div>
+    <div class="node">Obras</div><div class="arrow">→</div>
+    <div class="node">Página da obra</div><div class="arrow">→</div>
+    <div class="node">A Confidence</div><div class="arrow">→</div>
+    <div class="node">Contato</div>
+  </div>
+  <p class="map-note">“Como trabalhamos” pode ser uma seção da página institucional. Categorias e estados devem começar como filtros dentro de Obras, sem multiplicar páginas desnecessariamente.</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <img class="footer-logo" src="https://raw.githubusercontent.com/glaucodeveloper/proposta-confidence/main/imagens/logo_oficial_aplicacao_clara.png" alt="Confidence Construtora">
+    <p>Proposta de website institucional orientado à apresentação pública e à documentação textual e fotográfica das obras.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="close" type="button" aria-label="Fechar">×</button>
+  <img id="modal-image" alt="Imagem de proposta ampliada">
+</div>
+<script>
+(() => {
+  const modal=document.getElementById('modal');
+  const image=document.getElementById('modal-image');
+  const close=document.querySelector('.close');
+  document.querySelectorAll('[data-full]').forEach(el=>el.addEventListener('click',()=>{
+    image.src=el.dataset.full;modal.classList.add('open');document.body.style.overflow='hidden';
+  }));
+  function hide(){modal.classList.remove('open');document.body.style.overflow='';}
+  close.addEventListener('click',hide);
+  modal.addEventListener('click',e=>{if(e.target===modal)hide()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+})();
+</script>
+</body>
+</html>
